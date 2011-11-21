@@ -16,7 +16,7 @@ of the wheel, and it improves on the following points:
 
 ## Install
 
-spork is a python script, so drop make sure it's executable (`chmod +x`), and it somewhere and make sure
+spork is a python script, so make sure it's executable (`chmod +x`) and drop it somewhere and make sure
 the dirctory is added to your `$PATH`.
 
 ## Usage
