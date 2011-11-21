@@ -1,74 +1,30 @@
-# spark
-### sparklines for your shell
+# spork
+### sparklines for your shell -- a Python implementation
 
-See? Here's a graph of your productivity gains after using spark: ▁▂▃▅▇
+Forked from <https://github.com/holman/spark> who did the original shell-script implementation.
+For some inspiration on what to do with spork, I suggest you see his [Wiki](https://github.com/holman/spark/wiki).
 
-## install
+I was dissatisfied with several aspects holmans version, so here is another cr re-invention
+of the wheel, and it improves on the following points:
 
-spark is a [shell script][bin], so drop it somewhere and make sure it's added
-to your `$PATH`. It's helpful if you have a super-neat collection of dotfiles,
-[like mine][dotfiles].
+ * Speed. We're talking about a factor of 10 or more.
+ * Full support for floating point values (in Python format).
+ * Deterministic behavior. No more value skipping, or weird bucketing behavior with small lists.
+ * Argument handling. Who needs CSV? We want whitespace!
+ * Pipe support by reading from cmdline.
+ * Re-usability via Python class.
 
-## usage
+## Install
 
-Just run `spark` and pass it a list of numbers (comma-delimited, spaces,
-whatever you'd like). It's designed to be used in conjunction with other
-scripts that can output in that format.
+spork is a [python script][bin], so drop it somewhere and make sure the dirctory is added
+to your `$PATH`.
 
-    spark 0 30 55 80 33 150
-    ▁▂▃▅▂▇
+## Usage
 
-Invoke help with `spark -h`.
+Just run `spork` and pass it a whitespace-delimited list of numbers:
 
-## cooler usage
+    spork 0 30 55 80 33 150
+    ▁▂▃▄▂▇
 
-There's a lot of stuff you can do.
+Calling spork without arguments reads values from stdin. Invoke help with `spark -h`.
 
-Number of commits to the github/github Git repository, by author:
-
-```sh
-› git shortlog -s |
-      cut -f1 |
-      spark
-  ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▂▁▁▅▁▂▁▁▁▂▁▁▁▁▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-```
-
-Magnitude of earthquakes over 1.0 in the last 24 hours:
-
-```sh
-› curl http://earthquake.usgs.gov/earthquakes/catalogs/eqs1day-M1.txt --silent | 
-  sed '1d' |
-  cut -d, -f9 |
-  spark
-  ▅▆▂▃▂▂▂▅▂▂▅▇▂▂▂▃▆▆▆▅▃▂▂▂▁▂▂▆▁▃▂▂▂▂▃▂▆▂▂▂▁▂▂▃▂▂▃▂▂▃▂▂▁▂▂▅▂▂▆▆▅▃▆
-```
-
-Code visualization. The number of characters of `spark` itself, by line, ignoring empty lines:
-
-```sh
-› awk '{ print length($0) }' spark |
-  grep -Ev 0 |
-  spark
-  ▁▁▁▁▅▁▇▁▁▅▁▁▁▁▁▂▂▁▃▃▁▁▃▁▃▁▂▁▁▂▂▅▂▃▂▃▃▁▆▃▃▃▁▇▁▁▂▂▂▇▅▁▂▂▁▇▁▃▁▇▁▂▁▇▁▁▆▂▁▇▁▂▁▁▂▅▁▂▁▆▇▇▂▁▂▁▁▁▂▂▁▅▁▂▁▁▃▁▃▁▁▁▃▂▂▂▁▁▅▂▁▁▁▁▂▂▁▁▁▂▂
-```
-
-Since it's just a shell script, you could pop it in your prompt, too:
-
-```
-ruby-1.8.7-p334 in spark/ on master with history: ▂▅▇▂
-›
-```
-
-## wicked cool usage
-
-Sounds like a wiki is a great place to collect all of your 
-[wicked cool usage][wiki] for spark.
-
-## ▇▁ ⟦⟧ ▇▁
-
-This is a [@holman][holman] joint.
-
-[dotfiles]: https://github.com/holman/dotfiles 
-[bin]:      https://github.com/holman/spark/blob/master/spark
-[wiki]:     https://github.com/holman/spark/wiki/Wicked-Cool-Usage
-[holman]:   https://twitter.com/holman

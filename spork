@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys
+
+usage = """
+  USAGE:
+    spork [value [...]]
+
+  EXAMPLES:
+    spork 1 5 22 13 53
+    ▁▁▃▂▇
+    spork 0 30 55 80 33 150
+    ▁▂▃▄▂▇
+    spork
+    (reads values from stdin)
+"""
+
+class Spork( object ):
+
+	def __init__( self ):
+		self.ticks = [ '▁','▂','▃','▄','▅','▆','▇' ]
+		self.data = []
+
+	def append( self, x ):
+		x = float( x )
+		if len( self.data ) == 0:
+			self.max = x
+			self.min = x
+		else:
+			if x > self.max:
+				self.max = x
+			if x < self.min:
+				self.min = x
+		self.data.append( x )
+
+	def __str__( self ):
+		str = ''
+		factor = 0.99999 * len ( self.ticks ) / ( self.max - self.min )
+		for x in self.data:
+			bucket = int ( (x-self.min) * factor )
+			str += self.ticks[ bucket ]
+		return str
+
+
+if __name__ == '__main__':
+
+	data = Spork()
+
+	if len( sys.argv ) == 1:
+		for line in sys.stdin.readlines():
+			for word in line.split():
+				data.append( word )
+
+	elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
+		print usage		
+		sys.exit( 0 )
+
+	else:
+		for arg in sys.argv[1:]:
+			data.append( arg )
+
+	print data
