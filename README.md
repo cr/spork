@@ -7,12 +7,12 @@ For some inspiration on what to do with spork, I suggest you see his [Wiki](http
 I was dissatisfied with several aspects of holman's version, so here is another cr re-invention
 of the wheel, and it improves on the following points:
 
- * Speed. We're talking about a factor of 10 or more.
- * Full support for floating point values (in Python format).
- * Deterministic behavior. No more value skipping, or weird bucketing behavior with small lists.
- * Argument handling. Who needs CSV? We want whitespace!
- * Pipe support by reading from cmdline.
- * Re-usability via Python class.
+ * **Speed**. We're talking about a factor of 10 or more.
+ * Full support for **floating point** values (in Python format).
+ * **Deterministic behavior**. No more value skipping, or weird bucketing behavior with small lists.
+ * **Argument handling**. Who needs CSV? We want **whitespace**!
+ * **Pipe** support by reading from stdin.
+ * Re-usability via **Python class**.
 
 ## Install
 
