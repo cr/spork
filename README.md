@@ -4,7 +4,7 @@
 Forked from <https://github.com/holman/spark> who did the original shell-script implementation.
 For some inspiration on what to do with spork, I suggest you see his [Wiki](https://github.com/holman/spark/wiki).
 
-I was dissatisfied with several aspects holmans version, so here is another cr re-invention
+I was dissatisfied with several aspects of holman's version, so here is another cr re-invention
 of the wheel, and it improves on the following points:
 
  * Speed. We're talking about a factor of 10 or more.
@@ -16,8 +16,8 @@ of the wheel, and it improves on the following points:
 
 ## Install
 
-spork is a [python script][bin], so drop it somewhere and make sure the dirctory is added
-to your `$PATH`.
+spork is a python script, so drop make sure it's executable (`chmod +x`), and it somewhere and make sure
+the dirctory is added to your `$PATH`.
 
 ## Usage
 
